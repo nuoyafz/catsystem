@@ -1,0 +1,509 @@
+/* ============================================================
+   Vibrant & Block-based 主题
+   特征：活泼、友好、温暖、几何感
+   配色：青绿 + 琥珀 + 柔和背景
+   字体：Fredoka / Nunito
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* 主色调 */
+  --vb-primary: #0D9488;
+  --vb-primary-light: #14B8A6;
+  --vb-primary-dark: #0F766E;
+  --vb-on-primary: #FFFFFF;
+
+  /* 辅助色 */
+  --vb-secondary: #2DD4BF;
+  --vb-secondary-light: #5EEAD4;
+  --vb-accent: #D97706;
+  --vb-accent-light: #F59E0B;
+
+  /* 背景色 */
+  --vb-background: #F0FDFA;
+  --vb-background-alt: #CCFBF1;
+  --vb-surface: #FFFFFF;
+  --vb-surface-elevated: #F8FFFE;
+
+  /* 前景色 */
+  --vb-foreground: #134E4A;
+  --vb-foreground-muted: #5F7A76;
+  --vb-text: #134E4A;
+  --vb-text-muted: #5F7A76;
+
+  /* 中性色 */
+  --vb-muted: #E8F1F4;
+  --vb-border: #5EEAD4;
+  --vb-border-light: #99F6E4;
+
+  /* 功能色 */
+  --vb-success: #10B981;
+  --vb-warning: #F59E0B;
+  --vb-danger: #DC2626;
+  --vb-info: #0EA5E9;
+
+  /* 阴影 */
+  --vb-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --vb-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --vb-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --vb-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* 圆角 */
+  --vb-radius-sm: 8px;
+  --vb-radius: 12px;
+  --vb-radius-md: 16px;
+  --vb-radius-lg: 24px;
+  --vb-radius-xl: 32px;
+
+  /* 间距 */
+  --vb-gap-sm: 12px;
+  --vb-gap: 20px;
+  --vb-gap-md: 28px;
+  --vb-gap-lg: 48px;
+
+  /* 过渡 */
+  --vb-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --vb-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   基础样式
+   ============================================================ */
+html[data-theme="vibrant"],
+body[data-theme="vibrant"] {
+  font-family: 'Nunito', 'Microsoft YaHei', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--vb-text);
+  background: var(--vb-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-theme="vibrant"] * {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   背景装饰
+   ============================================================ */
+html[data-theme="vibrant"] .lg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 50%, #99F6E4 100%);
+}
+
+html[data-theme="vibrant"] .lg-backdrop::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: vb-float 20s ease-in-out infinite;
+}
+
+html[data-theme="vibrant"] .lg-backdrop::after {
+  content: "";
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: vb-float 25s ease-in-out infinite reverse;
+}
+
+@keyframes vb-float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+}
+
+/* ============================================================
+   Element Plus 组件样式
+   ============================================================ */
+
+/* 卡片 */
+html[data-theme="vibrant"] .el-card {
+  border: 1px solid var(--vb-border-light) !important;
+  border-radius: var(--vb-radius) !important;
+  background: var(--vb-surface) !important;
+  box-shadow: var(--vb-shadow) !important;
+  color: var(--vb-text) !important;
+  transition: all var(--vb-transition) !important;
+}
+
+html[data-theme="vibrant"] .el-card:hover {
+  box-shadow: var(--vb-shadow-md) !important;
+  transform: translateY(-2px);
+}
+
+html[data-theme="vibrant"] .el-card__header {
+  border-bottom: 1px solid var(--vb-border-light) !important;
+  background: var(--vb-surface-elevated) !important;
+  color: var(--vb-text) !important;
+  font-weight: 600;
+  padding: 16px 20px !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  border-radius: var(--vb-radius) var(--vb-radius) 0 0 !important;
+}
+
+html[data-theme="vibrant"] .el-card__body {
+  background: var(--vb-surface) !important;
+  padding: 20px !important;
+  color: var(--vb-text) !important;
+}
+
+/* 按钮 */
+html[data-theme="vibrant"] .el-button--primary {
+  background: var(--vb-primary) !important;
+  border: none !important;
+  color: var(--vb-on-primary) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all var(--vb-transition) !important;
+  box-shadow: var(--vb-shadow-sm) !important;
+}
+
+html[data-theme="vibrant"] .el-button--primary:hover {
+  background: var(--vb-primary-light) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--vb-shadow) !important;
+}
+
+html[data-theme="vibrant"] .el-button--success {
+  background: var(--vb-success) !important;
+  border: none !important;
+  color: var(--vb-on-primary) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-weight: 500;
+}
+
+html[data-theme="vibrant"] .el-button--danger {
+  background: var(--vb-danger) !important;
+  border: none !important;
+  color: var(--vb-on-primary) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-weight: 500;
+}
+
+html[data-theme="vibrant"] .el-button--default {
+  background: var(--vb-surface) !important;
+  border: 1px solid var(--vb-border) !important;
+  color: var(--vb-text) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-weight: 500;
+}
+
+html[data-theme="vibrant"] .el-button--default:hover {
+  background: var(--vb-muted) !important;
+  border-color: var(--vb-primary) !important;
+  color: var(--vb-primary) !important;
+}
+
+/* 输入框 */
+html[data-theme="vibrant"] .el-input__wrapper {
+  background: var(--vb-surface) !important;
+  border: 1px solid var(--vb-border) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  box-shadow: none !important;
+  transition: all var(--vb-transition) !important;
+}
+
+html[data-theme="vibrant"] .el-input__wrapper:hover {
+  border-color: var(--vb-primary) !important;
+}
+
+html[data-theme="vibrant"] .el-input__wrapper.is-focus {
+  border-color: var(--vb-primary) !important;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1) !important;
+}
+
+html[data-theme="vibrant"] .el-input__inner {
+  color: var(--vb-text) !important;
+  font-family: 'Nunito', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+html[data-theme="vibrant"] .el-input__inner::placeholder {
+  color: var(--vb-text-muted) !important;
+}
+
+/* 表格 */
+html[data-theme="vibrant"] .el-table {
+  background: var(--vb-surface) !important;
+  color: var(--vb-text) !important;
+  border-radius: var(--vb-radius) !important;
+  border: 1px solid var(--vb-border-light) !important;
+  box-shadow: var(--vb-shadow-sm) !important;
+}
+
+html[data-theme="vibrant"] .el-table th.el-table__cell {
+  background: var(--vb-primary) !important;
+  color: var(--vb-on-primary) !important;
+  font-weight: 600;
+  border-bottom: 1px solid var(--vb-border-light) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+html[data-theme="vibrant"] .el-table td.el-table__cell {
+  border-bottom: 1px solid var(--vb-border-light) !important;
+  background: var(--vb-surface) !important;
+}
+
+html[data-theme="vibrant"] .el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+  background: var(--vb-background-alt) !important;
+}
+
+/* 分页 */
+html[data-theme="vibrant"] .el-pagination .btn-prev,
+html[data-theme="vibrant"] .el-pagination .btn-next,
+html[data-theme="vibrant"] .el-pagination .el-pager li {
+  background: var(--vb-surface) !important;
+  border: 1px solid var(--vb-border) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  color: var(--vb-text) !important;
+  transition: all var(--vb-transition);
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 13px;
+}
+
+html[data-theme="vibrant"] .el-pagination .btn-prev:hover,
+html[data-theme="vibrant"] .el-pagination .btn-next:hover,
+html[data-theme="vibrant"] .el-pagination .el-pager li:hover {
+  background: var(--vb-primary) !important;
+  color: var(--vb-on-primary) !important;
+  border-color: var(--vb-primary) !important;
+}
+
+html[data-theme="vibrant"] .el-pagination .el-pager li.is-active {
+  background: var(--vb-primary) !important;
+  border-color: var(--vb-primary) !important;
+  color: var(--vb-on-primary) !important;
+}
+
+/* 对话框 */
+html[data-theme="vibrant"] .el-dialog {
+  border-radius: var(--vb-radius-lg) !important;
+  border: 1px solid var(--vb-border-light);
+  background: var(--vb-surface) !important;
+  box-shadow: var(--vb-shadow-lg) !important;
+}
+
+html[data-theme="vibrant"] .el-dialog__header {
+  border-bottom: 1px solid var(--vb-border-light);
+  padding: 20px 24px !important;
+  background: var(--vb-surface-elevated);
+  border-radius: var(--vb-radius-lg) var(--vb-radius-lg) 0 0;
+}
+
+html[data-theme="vibrant"] .el-dialog__title {
+  color: var(--vb-text) !important;
+  font-weight: 600;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 18px;
+}
+
+/* 表单标签 */
+html[data-theme="vibrant"] .el-form-item__label {
+  color: var(--vb-text) !important;
+  font-weight: 600;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+/* 标签 Tag */
+html[data-theme="vibrant"] .el-tag {
+  border-radius: var(--vb-radius-sm) !important;
+  border: 1px solid var(--vb-border) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+html[data-theme="vibrant"] .el-tag--success {
+  background: var(--vb-success) !important;
+  color: var(--vb-on-primary) !important;
+  border-color: var(--vb-success) !important;
+}
+
+html[data-theme="vibrant"] .el-tag--warning {
+  background: var(--vb-warning) !important;
+  color: var(--vb-on-primary) !important;
+  border-color: var(--vb-warning) !important;
+}
+
+html[data-theme="vibrant"] .el-tag--danger {
+  background: var(--vb-danger) !important;
+  color: var(--vb-on-primary) !important;
+  border-color: var(--vb-danger) !important;
+}
+
+/* 菜单 */
+html[data-theme="vibrant"] .el-menu {
+  border-right: none !important;
+  background: transparent !important;
+}
+
+html[data-theme="vibrant"] .el-menu-item {
+  color: var(--vb-text) !important;
+  border-radius: var(--vb-radius-sm) !important;
+  margin: 4px 12px !important;
+  transition: all var(--vb-transition) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+html[data-theme="vibrant"] .el-menu-item:hover {
+  background: var(--vb-background-alt) !important;
+  color: var(--vb-primary) !important;
+}
+
+html[data-theme="vibrant"] .el-menu-item.is-active {
+  background: var(--vb-primary) !important;
+  color: var(--vb-on-primary) !important;
+}
+
+/* 面包屑 */
+html[data-theme="vibrant"] .el-breadcrumb__item .el-breadcrumb__inner {
+  color: var(--vb-text-muted) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+html[data-theme="vibrant"] .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: var(--vb-text) !important;
+  font-weight: 600;
+}
+
+/* 下拉菜单 */
+html[data-theme="vibrant"] .el-dropdown-menu {
+  background: var(--vb-surface) !important;
+  border: 1px solid var(--vb-border-light) !important;
+  border-radius: var(--vb-radius) !important;
+  box-shadow: var(--vb-shadow-lg) !important;
+}
+
+html[data-theme="vibrant"] .el-dropdown-menu__item {
+  color: var(--vb-text) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+html[data-theme="vibrant"] .el-dropdown-menu__item:hover {
+  background: var(--vb-background-alt) !important;
+  color: var(--vb-primary) !important;
+}
+
+/* 消息提示 */
+html[data-theme="vibrant"] .el-message {
+  background: var(--vb-surface) !important;
+  border: 1px solid var(--vb-border-light) !important;
+  border-radius: var(--vb-radius) !important;
+  box-shadow: var(--vb-shadow-lg) !important;
+}
+
+html[data-theme="vibrant"] .el-message .el-message__content {
+  color: var(--vb-text) !important;
+  font-family: 'Nunito', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+}
+
+/* 滚动条 */
+html[data-theme="vibrant"] ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+html[data-theme="vibrant"] ::-webkit-scrollbar-track {
+  background: var(--vb-muted);
+  border-radius: 6px;
+}
+
+html[data-theme="vibrant"] ::-webkit-scrollbar-thumb {
+  background: var(--vb-primary);
+  border-radius: 6px;
+  border: 2px solid var(--vb-muted);
+}
+
+html[data-theme="vibrant"] ::-webkit-scrollbar-thumb:hover {
+  background: var(--vb-primary-light);
+}
+
+/* ============================================================
+   Layout 组件 vibrant 主题
+   ============================================================ */
+
+/* 侧边栏 */
+html[data-theme="vibrant"] .lg-aside {
+  background: var(--vb-surface) !important;
+  border-right: 1px solid var(--vb-border-light) !important;
+  box-shadow: var(--vb-shadow) !important;
+}
+
+/* Logo 区域 */
+html[data-theme="vibrant"] .lg-logo {
+  background: linear-gradient(135deg, var(--vb-primary) 0%, var(--vb-primary-light) 100%) !important;
+  border-bottom: 1px solid var(--vb-border-light) !important;
+}
+
+html[data-theme="vibrant"] .lg-logo-mark {
+  background: var(--vb-surface) !important;
+  border: none !important;
+  box-shadow: var(--vb-shadow) !important;
+}
+
+html[data-theme="vibrant"] .lg-logo-title {
+  color: var(--vb-on-primary) !important;
+  text-shadow: none !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif !important;
+}
+
+html[data-theme="vibrant"] .lg-logo-sub {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: none !important;
+  font-family: 'Nunito', 'Microsoft YaHei', sans-serif !important;
+}
+
+/* 顶栏 */
+html[data-theme="vibrant"] .lg-header {
+  background: var(--vb-surface) !important;
+  border-bottom: 1px solid var(--vb-border-light) !important;
+  box-shadow: var(--vb-shadow-sm) !important;
+}
+
+html[data-theme="vibrant"] .lg-user-avatar {
+  background: linear-gradient(135deg, var(--vb-primary) 0%, var(--vb-primary-light) 100%) !important;
+  border: none !important;
+  box-shadow: var(--vb-shadow) !important;
+  font-family: 'Fredoka', sans-serif !important;
+}
+
+html[data-theme="vibrant"] .lg-dropdown-link {
+  color: var(--vb-text) !important;
+  font-family: 'Fredoka', 'Microsoft YaHei', sans-serif !important;
+}
+
+/* 主题切换按钮 */
+html[data-theme="vibrant"] .theme-toggle {
+  background: var(--vb-background-alt) !important;
+  border-color: var(--vb-border) !important;
+}
+
+html[data-theme="vibrant"] .theme-toggle:hover {
+  background: var(--vb-primary) !important;
+  border-color: var(--vb-primary) !important;
+}

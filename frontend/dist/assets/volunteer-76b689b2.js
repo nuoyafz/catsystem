@@ -1,0 +1,1 @@
+import{r as t}from"./request-6684f6e9.js";const o=()=>t({url:"/volunteer/list",method:"get"}),u=e=>t({url:"/volunteer",method:"post",data:e}),n=e=>t({url:"/volunteer",method:"put",data:e}),l=e=>t({url:`/volunteer/${e}`,method:"delete"});export{u as a,l as d,o as g,n as u};

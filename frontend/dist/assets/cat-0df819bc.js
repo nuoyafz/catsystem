@@ -1,0 +1,1 @@
+import{r as e}from"./request-6684f6e9.js";const r=t=>e({url:"/cat/page",method:"get",params:t}),s=()=>e({url:"/cat/list",method:"get"}),o=t=>e({url:"/cat",method:"post",data:t}),u=t=>e({url:"/cat",method:"put",data:t}),d=t=>e({url:`/cat/${t}`,method:"delete"});export{r as a,o as b,d,s as g,u};

@@ -1,0 +1,710 @@
+/* ============================================================
+   Minecraft 像素风格主题
+   特征：像素化、方块感、复古游戏风
+   配色：草方块绿、泥土棕、石头灰、天空蓝
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  /* Minecraft 核心色 */
+  --mc-grass: #7CB342;
+  --mc-grass-dark: #558B2F;
+  --mc-dirt: #8D6E63;
+  --mc-dirt-dark: #6D4C41;
+  --mc-stone: #9E9E9E;
+  --mc-stone-dark: #616161;
+  --mc-wood: #A1887F;
+  --mc-wood-dark: #795548;
+  --mc-sky: #87CEEB;
+  --mc-sky-dark: #5BA3C7;
+  --mc-sun: #FFD54F;
+  --mc-sun-dark: #FFC107;
+  --mc-water: #4FC3F7;
+  --mc-lava: #FF7043;
+  --mc-diamond: #4DD0E1;
+  --mc-gold: #FFD700;
+  --mc-redstone: #F44336;
+  --mc-emerald: #4CAF50;
+
+  /* 功能色 */
+  --mc-primary: #7CB342;
+  --mc-primary-dark: #558B2F;
+  --mc-success: #4CAF50;
+  --mc-warning: #FFD54F;
+  --mc-danger: #F44336;
+  --mc-info: #4FC3F7;
+
+  /* 中性色 */
+  --mc-white: #FFFFFF;
+  --mc-light: #F5F5F5;
+  --mc-gray: #BDBDBD;
+  --mc-dark: #424242;
+  --mc-black: #212121;
+  --mc-text: #3E2723;
+  --mc-text-light: #795548;
+
+  /* 像素参数 */
+  --pixel-size: 4px;
+  --pixel-border: 2px;
+  --pixel-radius: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mc-text);
+  background: var(--mc-sky);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   Minecraft 背景 - 像素化天空
+   ============================================================ */
+.lg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: 
+    linear-gradient(180deg,
+      #87CEEB 0%,
+      #9FD8EF 30%,
+      #B7E3F3 60%,
+      #CFE9F5 100%);
+  image-rendering: pixelated;
+}
+
+/* 像素云朵 */
+.lg-backdrop::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 120px;
+  height: 40px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0px, transparent 20px,
+      #FFFFFF 20px, #FFFFFF 40px,
+      transparent 40px, transparent 60px,
+      #FFFFFF 60px, #FFFFFF 100px,
+      transparent 100px);
+  box-shadow:
+    0 -20px 0 0 #FFFFFF,
+    20px -20px 0 0 #FFFFFF,
+    40px -20px 0 0 #FFFFFF,
+    60px -20px 0 0 #FFFFFF,
+    0 -40px 0 0 #FFFFFF,
+    20px -40px 0 0 #FFFFFF,
+    40px -40px 0 0 #FFFFFF;
+  image-rendering: pixelated;
+  animation: mc-cloud-float 20s linear infinite;
+}
+
+.lg-backdrop::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 20%;
+  width: 100px;
+  height: 30px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0px, transparent 15px,
+      #FFFFFF 15px, #FFFFFF 35px,
+      transparent 35px, transparent 50px,
+      #FFFFFF 50px, #FFFFFF 85px,
+      transparent 85px);
+  box-shadow:
+    0 -15px 0 0 #FFFFFF,
+    15px -15px 0 0 #FFFFFF,
+    30px -15px 0 0 #FFFFFF,
+    45px -15px 0 0 #FFFFFF,
+    0 -30px 0 0 #FFFFFF,
+    15px -30px 0 0 #FFFFFF,
+    30px -30px 0 0 #FFFFFF;
+  image-rendering: pixelated;
+  animation: mc-cloud-float 25s linear infinite;
+}
+
+@keyframes mc-cloud-float {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-200px); }
+}
+
+/* ============================================================
+   核心像素类 - Minecraft 方块风格
+   ============================================================ */
+.liquid-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--pixel-radius);
+  border: var(--pixel-border) solid var(--mc-dark);
+  background: var(--mc-white);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 0 0 var(--pixel-border) var(--mc-dark);
+  transition: transform 0.1s steps(2);
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.liquid-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+.liquid-glass-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 0 0 var(--pixel-border) var(--mc-primary),
+    0 4px 0 0 var(--mc-primary-dark);
+}
+
+/* 紧凑像素 */
+.liquid-glass-pill {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--pixel-radius);
+  border: var(--pixel-border) solid var(--mc-dark);
+  background: var(--mc-white);
+  box-shadow:
+    inset calc(var(--pixel-size) * -0.5) calc(var(--pixel-size) * -0.5) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * 0.5) calc(var(--pixel-size) * 0.5) 0 0 var(--mc-light);
+  image-rendering: pixelated;
+}
+
+/* ============================================================
+   无障碍
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .lg-backdrop::before,
+  .lg-backdrop::after {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Element Plus - Minecraft 像素主题
+   ============================================================ */
+
+/* 卡片 */
+.el-card {
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  background: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 0 0 var(--pixel-border) var(--mc-dark) !important;
+  color: var(--mc-text) !important;
+}
+
+.el-card__header {
+  border-bottom: var(--pixel-border) solid var(--mc-stone) !important;
+  background: var(--mc-light) !important;
+  color: var(--mc-text) !important;
+  font-weight: 700;
+  padding: 16px 20px !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-card__body {
+  background: var(--mc-white) !important;
+  padding: 20px !important;
+  color: var(--mc-text) !important;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 按钮 - 像素风格 */
+.el-button--primary {
+  background: var(--mc-primary) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  color: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-primary-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-grass) !important;
+  border-radius: var(--pixel-radius) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.1s steps(2) !important;
+}
+
+.el-button--primary:hover {
+  background: var(--mc-grass) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-primary-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-grass),
+    0 4px 0 0 var(--mc-primary-dark) !important;
+}
+
+.el-button--primary:active {
+  transform: translateY(0);
+  box-shadow:
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-primary-dark),
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-grass) !important;
+}
+
+.el-button--success {
+  background: var(--mc-success) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  color: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 #2E7D32,
+    inset var(--pixel-size) var(--pixel-size) 0 0 #66BB6A !important;
+  border-radius: var(--pixel-radius) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-button--success:hover {
+  background: #66BB6A !important;
+  transform: translateY(-2px);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 #2E7D32,
+    inset var(--pixel-size) var(--pixel-size) 0 0 #66BB6A,
+    0 4px 0 0 #2E7D32 !important;
+}
+
+.el-button--danger {
+  background: var(--mc-danger) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  color: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 #C62828,
+    inset var(--pixel-size) var(--pixel-size) 0 0 #EF5350 !important;
+  border-radius: var(--pixel-radius) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-button--danger:hover {
+  background: #EF5350 !important;
+  transform: translateY(-2px);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 #C62828,
+    inset var(--pixel-size) var(--pixel-size) 0 0 #EF5350,
+    0 4px 0 0 #C62828 !important;
+}
+
+.el-button--default {
+  background: var(--mc-stone) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  color: var(--mc-text) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light) !important;
+  border-radius: var(--pixel-radius) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-button--default:hover {
+  background: var(--mc-light) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 4px 0 0 var(--mc-stone-dark) !important;
+}
+
+/* 输入框 */
+.el-input__wrapper {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  box-shadow:
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-light) !important;
+  transition: all 0.1s steps(2) !important;
+  image-rendering: pixelated;
+}
+
+.el-input__wrapper:hover {
+  border-color: var(--mc-primary) !important;
+}
+
+.el-input__wrapper.is-focus {
+  border-color: var(--mc-primary) !important;
+  box-shadow:
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-light),
+    0 0 0 var(--pixel-border) var(--mc-primary) !important;
+}
+
+.el-input__inner {
+  color: var(--mc-text) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-input__inner::placeholder {
+  color: var(--mc-gray) !important;
+}
+
+/* 下拉选择 */
+.el-select__wrapper {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  box-shadow:
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-light) !important;
+}
+
+/* 表格 */
+.el-table {
+  background: var(--mc-white) !important;
+  color: var(--mc-text) !important;
+  border-radius: var(--pixel-radius) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.el-table::before {
+  display: none;
+}
+
+.el-table tr {
+  background: var(--mc-white) !important;
+}
+
+.el-table th.el-table__cell {
+  background: var(--mc-primary) !important;
+  color: var(--mc-white) !important;
+  font-weight: 700;
+  border-bottom: var(--pixel-border) solid var(--mc-dark) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.el-table td.el-table__cell {
+  border-bottom: var(--pixel-border) solid var(--mc-stone) !important;
+  background: var(--mc-white) !important;
+}
+
+.el-table--border, .el-table--border .el-table__cell {
+  border: var(--pixel-border) solid var(--mc-stone) !important;
+}
+
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+  background: var(--mc-light) !important;
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: var(--mc-light) !important;
+}
+
+/* 分页 */
+.el-pagination {
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.el-pagination .btn-prev, .el-pagination .btn-next, .el-pagination .el-pager li {
+  background: var(--mc-stone) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  color: var(--mc-text) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -0.5) calc(var(--pixel-size) * -0.5) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * 0.5) calc(var(--pixel-size) * 0.5) 0 0 var(--mc-light) !important;
+  transition: all 0.1s steps(2);
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.el-pagination .btn-prev:hover, .el-pagination .btn-next:hover, .el-pagination .el-pager li:hover {
+  background: var(--mc-light) !important;
+  transform: translateY(-2px);
+}
+
+.el-pagination .el-pager li.is-active {
+  background: var(--mc-primary) !important;
+  border-color: var(--mc-dark) !important;
+  color: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-primary-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-grass) !important;
+}
+
+/* 对话框 */
+.el-dialog {
+  border-radius: var(--pixel-radius) !important;
+  border: var(--pixel-border) solid var(--mc-dark);
+  background: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -2) calc(var(--pixel-size) * -2) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 2) 0 0 var(--mc-light),
+    0 0 0 calc(var(--pixel-border) * 2) var(--mc-dark) !important;
+  image-rendering: pixelated;
+}
+
+.el-dialog__header {
+  border-bottom: var(--pixel-border) solid var(--mc-stone);
+  padding: 20px 24px !important;
+  background: var(--mc-primary);
+}
+
+.el-dialog__title {
+  color: var(--mc-white) !important;
+  font-weight: 700;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.el-dialog__body {
+  padding: 24px !important;
+  color: var(--mc-text) !important;
+}
+
+.el-overlay {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: none;
+}
+
+/* 表单标签 */
+.el-form-item__label {
+  color: var(--mc-text) !important;
+  font-weight: 700;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* 标签 Tag */
+.el-tag {
+  border-radius: var(--pixel-radius) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -0.5) calc(var(--pixel-size) * -0.5) 0 0 var(--mc-stone-dark),
+    inset calc(var(--pixel-size) * 0.5) calc(var(--pixel-size) * 0.5) 0 0 var(--mc-light) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.el-tag--success {
+  background: var(--mc-success) !important;
+  color: var(--mc-white) !important;
+}
+
+.el-tag--warning {
+  background: var(--mc-warning) !important;
+  color: var(--mc-text) !important;
+}
+
+.el-tag--danger {
+  background: var(--mc-danger) !important;
+  color: var(--mc-white) !important;
+}
+
+.el-tag--info {
+  background: var(--mc-info) !important;
+  color: var(--mc-white) !important;
+}
+
+/* 菜单 */
+.el-menu {
+  border-right: none !important;
+  background: transparent !important;
+}
+
+.el-menu-item {
+  color: var(--mc-text) !important;
+  border-radius: var(--pixel-radius) !important;
+  margin: 4px 12px !important;
+  transition: all 0.1s steps(2) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.el-menu-item:hover {
+  background: var(--mc-light) !important;
+  color: var(--mc-primary) !important;
+}
+
+.el-menu-item.is-active {
+  background: var(--mc-primary) !important;
+  color: var(--mc-white) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-primary-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-grass) !important;
+}
+
+/* 面包屑 */
+.el-breadcrumb__item .el-breadcrumb__inner {
+  color: var(--mc-text-light) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: var(--mc-text) !important;
+  font-weight: 700;
+}
+
+/* 下拉菜单 */
+.el-dropdown-menu {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 8px 0 0 var(--mc-dark) !important;
+}
+
+.el-dropdown-menu__item {
+  color: var(--mc-text) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.el-dropdown-menu__item:hover {
+  background: var(--mc-primary) !important;
+  color: var(--mc-white) !important;
+}
+
+/* 消息提示 */
+.el-message {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+  box-shadow:
+    inset calc(var(--pixel-size) * -1) calc(var(--pixel-size) * -1) 0 0 var(--mc-stone-dark),
+    inset var(--pixel-size) var(--pixel-size) 0 0 var(--mc-light),
+    0 8px 0 0 var(--mc-dark) !important;
+}
+
+.el-message .el-message__content {
+  color: var(--mc-text) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--mc-stone);
+  border: var(--pixel-border) solid var(--mc-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--mc-primary);
+  border: var(--pixel-border) solid var(--mc-dark);
+  box-shadow:
+    inset calc(var(--pixel-size) * -0.5) calc(var(--pixel-size) * -0.5) 0 0 var(--mc-primary-dark),
+    inset calc(var(--pixel-size) * 0.5) calc(var(--pixel-size) * 0.5) 0 0 var(--mc-grass);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--mc-grass);
+}
+
+/* 下拉选项文字 */
+.el-select-dropdown__item {
+  color: var(--mc-text) !important;
+  font-family: 'Press Start 2P', 'Microsoft YaHei', cursive;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background: var(--mc-primary) !important;
+  color: var(--mc-white) !important;
+}
+
+.el-select-dropdown {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+  border-radius: var(--pixel-radius) !important;
+}
+
+.el-popper.is-light {
+  background: var(--mc-white) !important;
+  border: var(--pixel-border) solid var(--mc-dark) !important;
+}
+
+.el-popper.is-light .el-popper__arrow::before {
+  background: var(--mc-white) !important;
+  border-color: var(--mc-dark) !important;
+}
+
+/* 日期选择器 */
+.el-date-picker__header,
+.el-date-picker__header-label,
+.el-picker-panel {
+  background: var(--mc-white) !important;
+  color: var(--mc-text) !important;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* 数字输入 */
+.el-input-number__decrease,
+.el-input-number__increase {
+  background: var(--mc-stone) !important;
+  border-color: var(--mc-dark) !important;
+  color: var(--mc-text) !important;
+}

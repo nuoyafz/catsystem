@@ -1,0 +1,513 @@
+/* ============================================================
+   暖阳猫舍 (Warm Terracotta) 主题
+   特征：温暖、自然、质朴、友好
+   配色：赤陶色 + 沙米色 + 橄榄绿
+   字体：Varela Round / Nunito Sans
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* 主色调 */
+  --wt-primary: #C67B5C;
+  --wt-primary-light: #D4896A;
+  --wt-primary-dark: #B06A4C;
+  --wt-on-primary: #FFFFFF;
+
+  /* 辅助色 */
+  --wt-secondary: #D4C4A8;
+  --wt-secondary-light: #E0D4BC;
+  --wt-accent: #6B7B3C;
+  --wt-accent-light: #7A8C4A;
+
+  /* 背景色 */
+  --wt-background: #F5F0E1;
+  --wt-background-alt: #EDE6D3;
+  --wt-surface: #FFFBF2;
+  --wt-surface-elevated: #FFFFFF;
+
+  /* 前景色 */
+  --wt-foreground: #5C3D2E;
+  --wt-foreground-muted: #8B7355;
+  --wt-text: #5C3D2E;
+  --wt-text-muted: #8B7355;
+
+  /* 中性色 */
+  --wt-muted: #E8DCC8;
+  --wt-border: #E8DCC8;
+  --wt-border-light: #F0E8D8;
+
+  /* 功能色 */
+  --wt-success: #6B7B3C;
+  --wt-warning: #D4A843;
+  --wt-danger: #DC2626;
+  --wt-info: #8B7355;
+
+  /* 阴影 */
+  --wt-shadow-sm: 0 1px 2px 0 rgba(92, 61, 46, 0.05);
+  --wt-shadow: 0 2px 8px rgba(92, 61, 46, 0.08), 0 1px 3px rgba(92, 61, 46, 0.06);
+  --wt-shadow-md: 0 4px 12px rgba(92, 61, 46, 0.1), 0 2px 6px rgba(92, 61, 46, 0.08);
+  --wt-shadow-lg: 0 8px 24px rgba(92, 61, 46, 0.12), 0 4px 12px rgba(92, 61, 46, 0.08);
+
+  /* 圆角 */
+  --wt-radius-sm: 6px;
+  --wt-radius: 8px;
+  --wt-radius-md: 12px;
+  --wt-radius-lg: 20px;
+
+  /* 间距 */
+  --wt-gap-sm: 12px;
+  --wt-gap: 20px;
+  --wt-gap-md: 28px;
+  --wt-gap-lg: 48px;
+
+  /* 过渡 */
+  --wt-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --wt-transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   基础样式
+   ============================================================ */
+html[data-theme="warm"],
+body[data-theme="warm"] {
+  font-family: 'Nunito Sans', 'Varela Round', 'Microsoft YaHei', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--wt-text);
+  background: var(--wt-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[data-theme="warm"] * {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   背景装饰
+   ============================================================ */
+html[data-theme="warm"] .lg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: 
+    linear-gradient(135deg, #F5F0E1 0%, #EDE6D3 50%, #E8DCC8 100%);
+}
+
+html[data-theme="warm"] .lg-backdrop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(198, 123, 92, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(107, 123, 60, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* 纸质纹理 */
+html[data-theme="warm"] .lg-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Element Plus 组件样式覆盖
+   ============================================================ */
+
+/* 全局 Element Plus 变量覆盖 */
+html[data-theme="warm"] {
+  --el-color-primary: var(--wt-primary);
+  --el-color-primary-light-3: var(--wt-primary-light);
+  --el-color-primary-dark-2: var(--wt-primary-dark);
+  --el-color-success: var(--wt-success);
+  --el-color-warning: var(--wt-warning);
+  --el-color-danger: var(--wt-danger);
+  --el-color-info: var(--wt-info);
+  --el-bg-color: var(--wt-background);
+  --el-border-radius-base: var(--wt-radius);
+  --el-border-radius-small: var(--wt-radius-sm);
+  --el-border-radius-round: var(--wt-radius-lg);
+  --el-font-family: 'Nunito Sans', 'Varela Round', 'Microsoft YaHei', sans-serif;
+}
+
+/* 卡片 */
+html[data-theme="warm"] .el-card {
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius-md) !important;
+  background: var(--wt-surface) !important;
+  box-shadow: var(--wt-shadow) !important;
+  color: var(--wt-text) !important;
+  transition: all var(--wt-transition);
+}
+
+html[data-theme="warm"] .el-card:hover {
+  box-shadow: var(--wt-shadow-md) !important;
+  transform: translateY(-2px);
+}
+
+html[data-theme="warm"] .el-card__header {
+  border-bottom: 1px solid var(--wt-border) !important;
+  background: var(--wt-surface-elevated) !important;
+  color: var(--wt-text) !important;
+  font-weight: 600;
+  padding: 16px 20px !important;
+  font-family: 'Varela Round', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+}
+
+html[data-theme="warm"] .el-card__body {
+  background: var(--wt-surface) !important;
+  padding: 20px !important;
+  color: var(--wt-text) !important;
+}
+
+/* 按钮 */
+html[data-theme="warm"] .el-button--primary {
+  background: var(--wt-primary) !important;
+  border: 1px solid var(--wt-primary) !important;
+  color: var(--wt-on-primary) !important;
+  border-radius: var(--wt-radius-lg) !important;
+  font-weight: 600;
+  transition: all var(--wt-transition);
+}
+
+html[data-theme="warm"] .el-button--primary:hover {
+  background: var(--wt-primary-light) !important;
+  border-color: var(--wt-primary-light) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--wt-shadow);
+}
+
+html[data-theme="warm"] .el-button--primary:active {
+  transform: translateY(0);
+}
+
+html[data-theme="warm"] .el-button--success {
+  background: var(--wt-success) !important;
+  border: 1px solid var(--wt-success) !important;
+  color: var(--wt-on-primary) !important;
+  border-radius: var(--wt-radius-lg) !important;
+}
+
+html[data-theme="warm"] .el-button--success:hover {
+  background: var(--wt-accent-light) !important;
+  border-color: var(--wt-accent-light) !important;
+}
+
+html[data-theme="warm"] .el-button--danger {
+  background: var(--wt-danger) !important;
+  border: 1px solid var(--wt-danger) !important;
+  color: var(--wt-on-primary) !important;
+  border-radius: var(--wt-radius-lg) !important;
+}
+
+html[data-theme="warm"] .el-button--default {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  color: var(--wt-text) !important;
+  border-radius: var(--wt-radius-lg) !important;
+}
+
+html[data-theme="warm"] .el-button--default:hover {
+  border-color: var(--wt-primary) !important;
+  color: var(--wt-primary) !important;
+}
+
+/* 输入框 */
+html[data-theme="warm"] .el-input__wrapper {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius) !important;
+  box-shadow: none !important;
+  transition: all var(--wt-transition);
+}
+
+html[data-theme="warm"] .el-input__wrapper:hover {
+  border-color: var(--wt-primary) !important;
+}
+
+html[data-theme="warm"] .el-input__wrapper.is-focus {
+  border-color: var(--wt-primary) !important;
+  box-shadow: 0 0 0 2px rgba(198, 123, 92, 0.1) !important;
+}
+
+html[data-theme="warm"] .el-input__inner {
+  color: var(--wt-text) !important;
+  font-family: 'Nunito Sans', 'Microsoft YaHei', sans-serif;
+}
+
+html[data-theme="warm"] .el-input__inner::placeholder {
+  color: var(--wt-text-muted) !important;
+}
+
+/* 下拉选择 */
+html[data-theme="warm"] .el-select__wrapper {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius) !important;
+  box-shadow: none !important;
+}
+
+/* 表格 */
+html[data-theme="warm"] .el-table {
+  background: var(--wt-surface) !important;
+  color: var(--wt-text) !important;
+  border-radius: var(--wt-radius-md) !important;
+  border: 1px solid var(--wt-border) !important;
+}
+
+html[data-theme="warm"] .el-table th.el-table__cell {
+  background: var(--wt-background-alt) !important;
+  color: var(--wt-text) !important;
+  font-weight: 600;
+  border-bottom: 1px solid var(--wt-border) !important;
+}
+
+html[data-theme="warm"] .el-table td.el-table__cell {
+  border-bottom: 1px solid var(--wt-border-light) !important;
+  background: var(--wt-surface) !important;
+}
+
+html[data-theme="warm"] .el-table--border, 
+html[data-theme="warm"] .el-table--border .el-table__cell {
+  border: 1px solid var(--wt-border) !important;
+}
+
+html[data-theme="warm"] .el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+  background: var(--wt-background-alt) !important;
+}
+
+/* 分页 */
+html[data-theme="warm"] .el-pagination {
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+html[data-theme="warm"] .el-pagination .btn-prev, 
+html[data-theme="warm"] .el-pagination .btn-next, 
+html[data-theme="warm"] .el-pagination .el-pager li {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius) !important;
+  color: var(--wt-text) !important;
+  transition: all var(--wt-transition);
+}
+
+html[data-theme="warm"] .el-pagination .btn-prev:hover, 
+html[data-theme="warm"] .el-pagination .btn-next:hover, 
+html[data-theme="warm"] .el-pagination .el-pager li:hover {
+  border-color: var(--wt-primary) !important;
+  color: var(--wt-primary) !important;
+}
+
+html[data-theme="warm"] .el-pagination .el-pager li.is-active {
+  background: var(--wt-primary) !important;
+  border-color: var(--wt-primary) !important;
+  color: var(--wt-on-primary) !important;
+}
+
+/* 对话框 */
+html[data-theme="warm"] .el-dialog {
+  border-radius: var(--wt-radius-md) !important;
+  border: 1px solid var(--wt-border);
+  background: var(--wt-surface) !important;
+  box-shadow: var(--wt-shadow-lg) !important;
+}
+
+html[data-theme="warm"] .el-dialog__header {
+  border-bottom: 1px solid var(--wt-border);
+  padding: 20px 24px !important;
+  background: var(--wt-surface-elevated);
+}
+
+html[data-theme="warm"] .el-dialog__title {
+  color: var(--wt-text) !important;
+  font-weight: 600;
+  font-family: 'Varela Round', 'Microsoft YaHei', sans-serif;
+  font-size: 18px;
+}
+
+html[data-theme="warm"] .el-dialog__body {
+  padding: 24px !important;
+  color: var(--wt-text) !important;
+}
+
+html[data-theme="warm"] .el-overlay {
+  background: rgba(92, 61, 46, 0.5) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* 表单标签 */
+html[data-theme="warm"] .el-form-item__label {
+  color: var(--wt-text) !important;
+  font-weight: 600;
+}
+
+/* 标签 Tag */
+html[data-theme="warm"] .el-tag {
+  border-radius: var(--wt-radius-lg) !important;
+  border: 1px solid var(--wt-border) !important;
+  background: var(--wt-background-alt) !important;
+  color: var(--wt-text) !important;
+}
+
+html[data-theme="warm"] .el-tag--success {
+  background: var(--wt-success) !important;
+  color: var(--wt-on-primary) !important;
+  border-color: var(--wt-success) !important;
+}
+
+html[data-theme="warm"] .el-tag--warning {
+  background: var(--wt-warning) !important;
+  color: var(--wt-text) !important;
+  border-color: var(--wt-warning) !important;
+}
+
+html[data-theme="warm"] .el-tag--danger {
+  background: var(--wt-danger) !important;
+  color: var(--wt-on-primary) !important;
+  border-color: var(--wt-danger) !important;
+}
+
+/* 面包屑 */
+html[data-theme="warm"] .el-breadcrumb__item .el-breadcrumb__inner {
+  color: var(--wt-text-muted) !important;
+}
+
+html[data-theme="warm"] .el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: var(--wt-text) !important;
+  font-weight: 600;
+}
+
+/* 下拉菜单 */
+html[data-theme="warm"] .el-dropdown-menu {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius) !important;
+  box-shadow: var(--wt-shadow-md) !important;
+}
+
+html[data-theme="warm"] .el-dropdown-menu__item {
+  color: var(--wt-text) !important;
+}
+
+html[data-theme="warm"] .el-dropdown-menu__item:hover {
+  background: var(--wt-background-alt) !important;
+  color: var(--wt-primary) !important;
+}
+
+/* 消息提示 */
+html[data-theme="warm"] .el-message {
+  background: var(--wt-surface) !important;
+  border: 1px solid var(--wt-border) !important;
+  border-radius: var(--wt-radius-md) !important;
+  box-shadow: var(--wt-shadow-lg) !important;
+}
+
+html[data-theme="warm"] .el-message--success {
+  border-color: var(--wt-success) !important;
+}
+
+html[data-theme="warm"] .el-message--warning {
+  border-color: var(--wt-warning) !important;
+}
+
+html[data-theme="warm"] .el-message--error {
+  border-color: var(--wt-danger) !important;
+}
+
+/* ============================================================
+   布局组件样式
+   ============================================================ */
+
+/* 侧边栏 */
+html[data-theme="warm"] .lg-aside {
+  background: var(--wt-surface);
+  border-right: 1px solid var(--wt-border);
+  box-shadow: var(--wt-shadow-sm);
+}
+
+/* Logo区域 */
+html[data-theme="warm"] .lg-logo {
+  background: linear-gradient(135deg, var(--wt-primary) 0%, var(--wt-primary-dark) 100%);
+  border-bottom: 1px solid var(--wt-border);
+}
+
+html[data-theme="warm"] .lg-logo-mark {
+  background: var(--wt-surface);
+  border: 2px solid var(--wt-border);
+  box-shadow: var(--wt-shadow-sm);
+}
+
+html[data-theme="warm"] .lg-logo-title {
+  color: var(--wt-on-primary);
+  font-family: 'Varela Round', 'Microsoft YaHei', sans-serif;
+  text-shadow: none;
+}
+
+html[data-theme="warm"] .lg-logo-sub {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 菜单 */
+html[data-theme="warm"] .el-menu {
+  background: var(--wt-surface) !important;
+  border-right: none !important;
+}
+
+html[data-theme="warm"] .el-menu-item {
+  color: var(--wt-text) !important;
+  border-radius: var(--wt-radius) !important;
+  margin: 4px 8px;
+  transition: all var(--wt-transition);
+}
+
+html[data-theme="warm"] .el-menu-item:hover {
+  background: var(--wt-background-alt) !important;
+  color: var(--wt-primary) !important;
+}
+
+html[data-theme="warm"] .el-menu-item.is-active {
+  background: var(--wt-primary) !important;
+  color: var(--wt-on-primary) !important;
+}
+
+/* 顶栏 */
+html[data-theme="warm"] .lg-header {
+  background: var(--wt-surface);
+  border-bottom: 1px solid var(--wt-border);
+  box-shadow: var(--wt-shadow-sm);
+}
+
+/* 用户头像 */
+html[data-theme="warm"] .lg-user-avatar {
+  background: linear-gradient(135deg, var(--wt-primary) 0%, var(--wt-primary-dark) 100%);
+  border: 2px solid var(--wt-border);
+  color: var(--wt-on-primary);
+  border-radius: 50%;
+  box-shadow: var(--wt-shadow-sm);
+}
+
+/* 下拉链接 */
+html[data-theme="warm"] .lg-dropdown-link {
+  color: var(--wt-text);
+  font-weight: 600;
+}
+
+/* ============================================================
+   无障碍
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="warm"] * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1 @@
+import{r as e}from"./request-6684f6e9.js";const r=t=>e({url:"/activity/list",method:"get",params:t}),s=t=>e({url:"/activity",method:"post",data:t}),a=t=>e({url:"/activity",method:"put",data:t}),c=t=>e({url:`/activity/${t}`,method:"delete"});export{s as a,c as d,r as g,a as u};

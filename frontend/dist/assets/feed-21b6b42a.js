@@ -1,0 +1,1 @@
+import{r as t}from"./request-6684f6e9.js";const r=()=>t({url:"/feed/list",method:"get"}),s=e=>t({url:"/feed",method:"post",data:e}),o=e=>t({url:"/feed",method:"put",data:e}),u=e=>t({url:`/feed/${e}`,method:"delete"});export{s as a,u as d,r as g,o as u};
